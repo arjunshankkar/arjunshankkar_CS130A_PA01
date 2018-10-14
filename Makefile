@@ -8,4 +8,4 @@ blockchain.o: blockchain.cpp blockchain.h
 	g++ -g blockchain.cpp -c
 
 clean:
-	rm blockchainMain blockchainMain.o blockchain.o
+	rm -f blockchainMain blockchainMain.o blockchain.o
