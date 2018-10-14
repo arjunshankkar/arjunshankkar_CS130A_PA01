@@ -38,12 +38,18 @@ namespace arjun_umashankkar{
   void TransactionChain::addTransaction(int amount, std::string sender, std::string reciever){
     Transaction *tmp_ptr = new Transaction(amount, sender, reciever, " ", " ", head_ptr);
     string new_nonce;
-    string combinedPreHash;
+    string preHash;
     //generate new random numbers
     srand(time(NULL));
     //print generated character between a - z
     new_nonce = char(rand() % 26 + 97);
-    combinedPreHash = to_string(amount) + sender + reciever + new_nonce;
-    //while (combinedPreHash.back() != 0 )
+    preHash = to_string(amount) + sender + reciever + new_nonce;
+    string hashed = picosha2::hash256_hex_string(preHash);
+    while (hashed.back() != 0 && hashed.back() != 1 &&
+    hashed.back() != 2 && hashed.back() != 3 && hashed.back() != 4){
+      new_nonce = char(rand() % 26 + 97);
+      preHash = to_string(amount) + sender + reciever + new_nonce;
+      string hashed = picosha2::hash256_hex_string(preHash);
+    }
   }
 }
