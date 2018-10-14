@@ -15,7 +15,6 @@
 #define BLOCK_H
 #include <cstdlib>
 #include <iostream>
-#include <cstdlib>
 #include <cmath>
 #include <string>
 #include <algorithm>
@@ -59,12 +58,13 @@ namespace arjun_umashankkar{
       void addTransaction(int amount, std::string sender, std::string reciever);
       void findTransaction(std::string sender);
       bool verifyAndPrint();
-      void setlast_ptr(Transaction* pointer) { last_ptr = pointer; }
-      Transaction* getlast_ptr() const { return last_ptr; }
+      //void setlast_ptr(Transaction* pointer) { last_ptr = pointer; }
+      //Transaction* getlast_ptr() const { return last_ptr; }
       // ~TransactionChain();
     private:
       mutable Transaction *head_ptr;
-      Transaction *last_ptr;
+      // int size;
+      //Transaction *last_ptr;
   };
 }
 

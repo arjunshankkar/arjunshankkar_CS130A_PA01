@@ -31,5 +31,19 @@ namespace arjun_umashankkar{
     previous = ptr;
   }
 
-  
+  TransactionChain::TransactionChain(){
+    head_ptr = NULL;
+  }
+
+  void TransactionChain::addTransaction(int amount, std::string sender, std::string reciever){
+    Transaction *tmp_ptr = new Transaction(amount, sender, reciever, " ", " ", head_ptr);
+    string new_nonce;
+    string combinedPreHash;
+    //generate new random numbers
+    srand(time(NULL));
+    //print generated character between a - z
+    new_nonce = char(rand() % 26 + 97);
+    combinedPreHash = to_string(amount) + sender + reciever + new_nonce;
+    //while (combinedPreHash.back() != 0 )
+  }
 }
