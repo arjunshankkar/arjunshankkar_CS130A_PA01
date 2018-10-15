@@ -45,11 +45,52 @@ namespace arjun_umashankkar{
     new_nonce = char(rand() % 26 + 97);
     preHash = to_string(amount) + sender + reciever + new_nonce;
     string hashed = picosha2::hash256_hex_string(preHash);
-    while (hashed.back() != 0 && hashed.back() != 1 &&
-    hashed.back() != 2 && hashed.back() != 3 && hashed.back() != 4){
+    int length = hashed.length();
+    while (hashed.at(length-1) != '0' && hashed.at(length-1) != '1' &&
+    hashed.at(length-1) != '2' && hashed.at(length-1) != '3' && hashed.at(length-1) != '4'){
       new_nonce = char(rand() % 26 + 97);
+      //cout << new_nonce << endl;
       preHash = to_string(amount) + sender + reciever + new_nonce;
-      string hashed = picosha2::hash256_hex_string(preHash);
+      hashed = picosha2::hash256_hex_string(preHash);
+      length = hashed.length();
     }
+    //cout << hashed << endl;
+    tmp_ptr -> set_nonce(new_nonce);
+    if(head_ptr == NULL){
+      tmp_ptr-> set_hash("");
+    }
+    else{
+      string prePrevHash = to_string(head_ptr->get_amount()) + head_ptr->get_sender()
+                          + head_ptr->get_reciever() + head_ptr->get_nonce();
+      string prev_hash = picosha2::hash256_hex_string(prePrevHash);
+      tmp_ptr -> set_hash(prev_hash);
+    }
+    tmp_ptr -> set_previous(head_ptr);
+    head_ptr = tmp_ptr;
+  }
+
+
+  void TransactionChain::findTransaction(std::string sender){
+    Transaction *tmp_ptr = head_ptr;
+    int transactionCount = 0;
+    for(tmp_ptr; tmp_ptr != NULL; tmp_ptr = tmp_ptr = tmp_ptr->get_previous()){
+      if(sender == tmp_ptr->get_sender()){
+        transactionCount++;
+        cout << endl;
+        cout << "Amount: " << tmp_ptr->get_amount() << endl;
+        cout << "Sender: " << tmp_ptr->get_sender() << endl;
+        cout << "Reciever: " << tmp_ptr->get_reciever() << endl;
+        cout << "Nonce: " << tmp_ptr->get_nonce() << endl;
+        cout << "Hash: " << tmp_ptr->get_hash() << endl << endl;
+      }
+    }
+    if (transactionCount == 0){
+      cout << endl;
+      cout << "There were no transactions where this person sent money." << endl;
+    }
+  }
+
+  bool TransactionChain::verifyAndPrint(){
+    //Verify first
   }
 }

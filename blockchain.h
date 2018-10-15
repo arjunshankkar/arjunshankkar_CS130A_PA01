@@ -58,12 +58,15 @@ namespace arjun_umashankkar{
       void addTransaction(int amount, std::string sender, std::string reciever);
       void findTransaction(std::string sender);
       bool verifyAndPrint();
+      Transaction* get_head_ptr() { return head_ptr; }
+      void set_prev_hash(std::string new_next_hash){ next_hash = new_next_hash; }
+      std::string get_next_hash(){ return next_hash; }
       //void setlast_ptr(Transaction* pointer) { last_ptr = pointer; }
       //Transaction* getlast_ptr() const { return last_ptr; }
       // ~TransactionChain();
     private:
       mutable Transaction *head_ptr;
-      // int size;
+      std::string next_hash;
       //Transaction *last_ptr;
   };
 }
