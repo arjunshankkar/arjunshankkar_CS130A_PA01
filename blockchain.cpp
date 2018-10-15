@@ -71,9 +71,8 @@ namespace arjun_umashankkar{
 
 
   void TransactionChain::findTransaction(std::string sender){
-    Transaction *tmp_ptr = head_ptr;
     int transactionCount = 0;
-    for(tmp_ptr; tmp_ptr != NULL; tmp_ptr = tmp_ptr = tmp_ptr->get_previous()){
+    for(Transaction *tmp_ptr = head_ptr; tmp_ptr != NULL; tmp_ptr = tmp_ptr = tmp_ptr->get_previous()){
       if(sender == tmp_ptr->get_sender()){
         transactionCount++;
         cout << endl;
@@ -98,23 +97,28 @@ namespace arjun_umashankkar{
         if(tmp_ptr->get_hash() != ""){
           return false;
         }
-       }
-       else{
+      }
+      else{
          Transaction* prev_Transaction = tmp_ptr->get_previous();
          string prevPreHash = to_string(prev_Transaction->get_amount()) + prev_Transaction->get_sender() + prev_Transaction->get_reciever()+ prev_Transaction->get_nonce();
          string prevHash = picosha2::hash256_hex_string(prevPreHash);
          if(prevHash != tmp_ptr->get_hash()){
            return false;
-         }
-       }
+          }
+        }
      }
-      for(Transaction* tmp_ptr = head_ptr; tmp_ptr != NULL; tmp_ptr = tmp_ptr->get_previous()){
-        cout << endl;
-        cout << "Amount: " << tmp_ptr->get_amount() << endl;
-        cout << "Sender: " << tmp_ptr->get_sender() << endl;
-        cout << "Reciever: " << tmp_ptr->get_reciever() << endl;
-        cout << "Nonce: " << tmp_ptr->get_nonce() << endl;
-        cout << "Hash: " << tmp_ptr->get_hash() << endl << endl;
+    for(Transaction* tmp_ptr = head_ptr; tmp_ptr != NULL; tmp_ptr = tmp_ptr->get_previous()){
+      cout << endl;
+      cout << "Amount: " << tmp_ptr->get_amount() << endl;
+      cout << "Sender: " << tmp_ptr->get_sender() << endl;
+      cout << "Reciever: " << tmp_ptr->get_reciever() << endl;
+      cout << "Nonce: " << tmp_ptr->get_nonce() << endl;
+      cout << "Hash: " << tmp_ptr->get_hash() << endl << endl;
     }
+    return true;
+  }
+
+  TransactionChain::~TransactionChain(){
+    head_ptr = NULL;
   }
 }
