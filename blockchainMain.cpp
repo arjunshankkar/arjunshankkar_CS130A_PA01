@@ -46,8 +46,11 @@ using namespace arjun_umashankkar;
         cin >> string_input;
         Blockchain.findTransaction(string_input);
       }
-      if(user_input == 3)
-        cout << "stub for verify and print" << endl;
+      if(user_input == 3){
+        cout << "If the hash has been compromised, this function will return false." << endl;
+        cout << "If the has has not been compromised, this function will print the list of transactions and return true." << endl;
+        Blockchain.verifyAndPrint();
+      }
       if (user_input == 4){
         cout << "Thank you for using the Transaction-chain application!" << endl;
         break;
