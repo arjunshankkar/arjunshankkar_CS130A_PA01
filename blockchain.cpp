@@ -107,6 +107,7 @@ namespace arjun_umashankkar{
            return false;
          }
        }
+     }
       for(Transaction* tmp_ptr = head_ptr; tmp_ptr != NULL; tmp_ptr = tmp_ptr->get_previous()){
         cout << endl;
         cout << "Amount: " << tmp_ptr->get_amount() << endl;
@@ -114,7 +115,6 @@ namespace arjun_umashankkar{
         cout << "Reciever: " << tmp_ptr->get_reciever() << endl;
         cout << "Nonce: " << tmp_ptr->get_nonce() << endl;
         cout << "Hash: " << tmp_ptr->get_hash() << endl << endl;
-      }
     }
   }
 }
