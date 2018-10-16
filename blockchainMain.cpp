@@ -31,7 +31,7 @@ using namespace arjun_umashankkar;
         string sand, rece;
         cin >> amnt >> sand >> rece;
         while(cin.fail()){
-          cout << "This was not a valid input. Please try again." << endl;
+          cout << "This was not a valid input. Please try again, and make sure to use an integer for amount." << endl;
           cin.clear();
           cin.ignore(256,'\n');
           cin >> amnt >> sand >> rece;
@@ -48,7 +48,7 @@ using namespace arjun_umashankkar;
       }
       if(user_input == 3){
         cout << "If the hash has been compromised, this function will return false." << endl;
-        cout << "If the hash has not been compromised, this function will print the list of transactions and return true." << endl;
+        cout << "If the hash has not been compromised, this function will return true and print the list of transactions." << endl;
         Blockchain.verifyAndPrint();
       }
       if (user_input == 4){
@@ -56,6 +56,6 @@ using namespace arjun_umashankkar;
         break;
       }
       if ((user_input != 1) && (user_input != 2) && (user_input != 3) && (user_input != 4))
-        cout << "Wrong operation! Please try again." << endl;
+        cout << "Wrong operation! Please try again with a valid integer input." << endl;
       }
     }

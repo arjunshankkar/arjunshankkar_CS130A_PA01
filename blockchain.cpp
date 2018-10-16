@@ -107,6 +107,8 @@ namespace arjun_umashankkar{
           }
         }
      }
+     if (head_ptr == NULL)
+      cout << "There are no transactions in this chain." << endl;
     for(Transaction* tmp_ptr = head_ptr; tmp_ptr != NULL; tmp_ptr = tmp_ptr->get_previous()){
       cout << endl;
       cout << "Amount: " << tmp_ptr->get_amount() << endl;
