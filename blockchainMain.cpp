@@ -25,17 +25,20 @@ using namespace arjun_umashankkar;
         cin >> user_input;
       }
       if(user_input == 1){
-        cout << "Please enter the amount, sender, and reciever (in that order) "
-             << "with spaces between values and hit enter!" << endl;
+        cout << "Please enter the amount." << endl;
         int amnt;
-        string sand, rece;
-        cin >> amnt >> sand >> rece;
+        cin >> amnt;
         while(cin.fail()){
           cout << "This was not a valid input. Please try again, and make sure to use an integer for amount." << endl;
           cin.clear();
           cin.ignore(256,'\n');
-          cin >> amnt >> sand >> rece;
+          cin >> amnt;
         }
+        string sand, rece;
+        cout << "Please enter the sender." << endl;
+        cin >> sand;
+        cout << "Please enter the reciever." << endl;
+        cin >> rece;
         Blockchain.addTransaction(amnt, sand, rece);
         cout << "Your transaction has been added. The hash contained in this transaction is: " << endl
              << Blockchain.get_head_ptr()->get_hash() << endl;
